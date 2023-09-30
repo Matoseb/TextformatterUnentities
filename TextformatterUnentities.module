@@ -1,5 +1,5 @@
 <?php
-class TextformatterUnentities extends WireData implements Textformatter {
+class TextformatterUnentities extends Textformatter {
     public static function getModuleInfo() {
         return [
             'title' => 'Textformatter Unentities',
@@ -7,11 +7,12 @@ class TextformatterUnentities extends WireData implements Textformatter {
             'summary' => 'Convert HTML entities back to their original characters.',
             'autoload' => true,
             'singular' => true,
+            'href' => 'https://github.com/Matoseb/TextformatterUnentities'
         ];
     }
 
-    public function format(Page $page, $text, $options = array()) {
+    public function format(&$str) {
         $sanitizer = $this->wire('sanitizer');
-        return $sanitizer->unentities($text);
+        $str = $sanitizer->unentities($str);
     }
 }
